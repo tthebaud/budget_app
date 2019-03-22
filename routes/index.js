@@ -11,4 +11,5 @@ router.get('/', landing.landing_get);
 //Actions perform on database
 router.post('/', landing.submit_lead);
 router.get('/leads', landing.show_leads);
+router.get('/lead/:lead_id', landing.show_lead);
 module.exports = router; //exports the module
