@@ -7,5 +7,8 @@ let landing = require('../controllers/landing');
 //we call the next funtion as an handler.
 //Then the render method is called to render the index page.
 router.get('/', landing.landing_get);
+
+//Actions perform on database
 router.post('/', landing.submit_lead);
+router.get('/leads', landing.show_leads);
 module.exports = router; //exports the module
