@@ -5,8 +5,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-let passport = requires('passport');
+
+let passport = require('passport');
 let session = require('express-session');
+let flash = require('connect-flash');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -15,7 +17,7 @@ require('./passport_setup')(passport);
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views')); //the views are the directories views
+app.set('views', path.join(__dirname, 'views')); //the views are in the directory views
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
@@ -24,9 +26,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({ secret: ' our new secret'}));
+
+app.use(session({ secret: 'Our new secret'}));
+app.use(flash());
 app.use(passport.initialize());
-app.use(passport.session()):
+app.use(passport.session());
 app.use('/', indexRouter); //our application is using the indexRouter for the /route
 app.use('/users', usersRouter);
 

@@ -2,7 +2,7 @@
 const models = require('../models');
 
 exports.landing_get = function(req, res, next) {
-  res.render('landing', { title: 'Express' });
+  res.render('landing', { title: 'Express', user: req.user });
 }
 
 exports.submit_lead = function(req, res, next) {
@@ -46,7 +46,7 @@ exports.edit_lead = function(req, res, next) {
 	req.body.lead_email
 
 	return models.Lead.update({
-		email: req.body.ead_email
+		email: req.body.lead_email
 	}, {
 		where: {
 			id: req.params.lead_id
