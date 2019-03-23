@@ -34,8 +34,9 @@ exports.signup = function( req, res, next ) {
           is_admin: true
         }
       }).then( user => {
+        let newUser;
         if ( user !== null) {
-          let newUser = models.User.build({
+          newUser = models.User.build({
             email: req.body.email,
             password: generateHash( req.body.password )
           });
