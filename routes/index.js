@@ -3,7 +3,7 @@ var router = express.Router(); //router variable is an instance of an express ro
 
 let landing = require('../controllers/landing');
 let user = require('../controllers/user');
-
+let { isLoggedIn, hasAuth } = require("../middleware/hasAuth.js");
 /* GET home page. */
 router.get('/', landing.landing_get);
 
@@ -17,7 +17,7 @@ router.get('/logout', user.logout);
 
 //Actions perform on leads
 router.post('/', landing.submit_lead);
-router.get('/leads', landing.show_leads);
+router.get('/leads', hasAuth, landing.show_leads);
 router.get('/lead/:lead_id', landing.show_lead);
 router.get('/lead/:lead_id/edit', landing.show_edit_lead);
 router.post('/lead/:lead_id/edit', landing.edit_lead);

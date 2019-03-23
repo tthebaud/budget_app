@@ -1,5 +1,5 @@
 
-let models = require("../models");
+let models = require("../models");  
 let validator = require('validator');
 
 const validateCreateUserFields = function( errors, req ) {
