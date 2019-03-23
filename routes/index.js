@@ -10,7 +10,8 @@ router.get('/', landing.landing_get);
 //Login
 router.get('/login', user.show_login);
 router.get('/signup', user.show_signup);
-
+router.post('/login', user.login);
+router.post('/signup', user,signup);
 //Actions perform on leads
 router.post('/', landing.submit_lead);
 router.get('/leads', landing.show_leads);
