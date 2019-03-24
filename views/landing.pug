@@ -11,12 +11,24 @@ html(lang='en')
           div.col-md-6.order-md-1.text-center.text-md-left.pr-md-5
             h1.mb-3 Minimum Viable Landing Page
             p.lead This tutorial teaches you how to build a NodeJS web application covering key topics.
-            p.lead.mb-4 Learn how to launch a landing page and start collecting sales leads.
-            form(action="/", method="POST")
-              div.input-group.mb-3
-                input(name="lead_email", type="email", placeholder="Enter your email address").form-control
-                div.input-group-append
-                  button(type="submit").btn.btn-primary Get Started        
+            p.lead.mb-4 Learn how to launch a landing page and start collecting sales leads
+            div.jumbotron
+              h2.text-center Add a bill or an income !
+              div.row
+                div.col-sm-12.col-md-12
+                  form(action="/", method="POST")
+                    div.formgroup
+                      label.small.mb-1.mt-3 Name:
+                      input(placeholder='Name', required=true, name='name', value='' ).form-control
+                      label.small.mb-1.mt-3 Date:
+                      input(required=true, name='date', type='date', value='' ).form-control
+                      label.small.mb-1.mt-3 Amount:
+                      input(placeholder='$0.00', required=true, name='amount', type='number', value='' ).form-control
+                      div.mt-3.text-center
+                        div.btn-group.mr-2
+                          button.btn.btn-danger(type="submit", name="bill", value="bill") Bill
+                        div.btn-group.mr-2
+                          button.btn.btn-success(type="submit", name="income", value="income") Income
     include common/footer.pug
     +footer()
     script(src='/javascripts/leads.js')

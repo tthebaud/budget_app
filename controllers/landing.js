@@ -5,15 +5,31 @@ exports.landing_get = function(req, res, next) {
   res.render('landing', { title: 'Express', user: req.user });
 }
 
-exports.submit_lead = function(req, res, next) {
-  console.log("lead email:", req.body.lead_email);
+exports.submit_form = function(req, res, next) {
 
-  return models.Lead.create({
-  	email: req.body.lead_email
-  }).then( lead => {
-  	res.redirect('/leads');
-  })
+	if ( req.body.bill == "bill" ){
+		return models.Bill.create({
+		  	name: req.body.name,
+		  	date: req.body.date,
+		  	amount: req.body.amount
+		  }).then( Bill => {
+		  	res.redirect('/');
+		})
+	} else {
+		return models.Income.create({
+		  	name: req.body.name,
+		  	date: req.body.date,
+		  	amount: req.body.amount
+		  }).then( Income => {
+		  	res.redirect('/');
+		})
+	}
 }
+
+exports.submit_income = function(req, res, next) {
+
+}
+
 
 exports.show_leads = function(req, res, next) {
 	return models.Lead.findAll().then( leads => {
