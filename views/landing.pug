@@ -36,6 +36,7 @@ html(lang='en')
                   th(scope="col") Date
                   th(scope="col") Name
                   th(scope="col") Amount
+                  th(scope="col")
                 tr
               tbody
               if bills
@@ -47,6 +48,8 @@ html(lang='en')
                       span #{bill.name}
                     td
                       span - $#{bill.amount}
+                    td
+                      a(href="/bill-" + bill.id) Edit
               if incomes
                 for income in incomes
                   tr(id=income.id).bg-success
@@ -56,6 +59,8 @@ html(lang='en')
                       span #{income.name}
                     td
                       span + $#{income.amount}
+                    td
+                      a(href="/income-" + income.id) Edit
     include common/footer.pug
     +footer()
     script(src='/javascripts/leads.js')

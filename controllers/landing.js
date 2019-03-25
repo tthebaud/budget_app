@@ -28,22 +28,54 @@ exports.submit_form = function(req, res, next) {
 	}
 }
 
-
-exports.show_leads = function(req, res, next) {
-	return models.Bill.findAll().then( bills => {
-		res.render('lead/leads', { title: 'Express', bills: bills });
-	})
-}
-
-exports.show_lead = function(req, res, next) {
-	return models.Lead.findOne({
+exports.show_bill = function(req, res, next) {
+	return models.Bill.findOne({
 		where : {
-			id : req.params.lead_id
+			id : req.params.bill_id
 		}
-	}).then( lead => {
-		res.render('lead/lead', { lead : lead });
+	}).then( bill => {
+		res.render('bill/bill', { bill: bill });
 	});
 }
+
+exports.edit_bill = function(req, res, next) {
+	return models.Bill.update({
+		name: req.body.name,
+		date: req.body.date,
+		amount: req.body.amount
+	}, {
+		where: {
+			id: req.params.bill_id
+		}
+	}).then( result => {
+		res.redirect('/');
+	});
+}
+
+exports.show_income = function(req, res, next) {
+	return models.Income.findOne({
+		where : {
+			id : req.params.income_id
+		}
+	}).then( income => {
+		res.render('income/income', { income: income });
+	});
+}
+
+exports.edit_income = function(req, res, next) {
+	return models.Income.update({
+		name: req.body.name,
+		date: req.body.date,
+		amount: req.body.amount
+	}, {
+		where: {
+			id: req.params.income_id
+		}
+	}).then( result => {
+		res.redirect('/');
+	});
+}
+
 
 exports.show_edit_lead = function(req, res, next) {
 	return models.Lead.findOne({
@@ -55,20 +87,7 @@ exports.show_edit_lead = function(req, res, next) {
 	});
 }
 
-exports.edit_lead = function(req, res, next) {
-	req.params.lead_id
-	req.body.lead_email
 
-	return models.Lead.update({
-		email: req.body.lead_email
-	}, {
-		where: {
-			id: req.params.lead_id
-		}
-	}).then(result => {
-		res.redirect('/lead/' + req.params.lead_id);
-	});
-}
 
 exports.delete_lead = function(req, res, next) {
 	return models.Lead.destroy({

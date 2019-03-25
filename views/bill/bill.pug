@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+  include ../common/head.pug
+  +head("Edit Leads")
+  body
+    header
+      include ../common/navbar.pug
+      +navbar()
+      div.container.mt-5
+        h1 Edit Bill
+        div.row.align-items-center.mt-5
+            form(action="/bill-" + bill.id, method="POST")
+              table.table.table-sm
+                thead
+                  tr
+                    th(scope="col") Date
+                    th(scope="col") Name
+                    th(scope="col") Amount
+                    th(scope="col")
+                  tr
+                tbod
+                  tr(id=bill.id)
+                    td
+                      input(name="date", type="Date", placeholder="mm/dd/yyyy", value=bill.date).form-control
+                    td
+                      input(name="name", placeholder="Name", value=bill.name).form-control
+                    td
+                      input(name="amount", type="Number", placeholder="$0.00", value=bill.amount).form-control
+                    td
+                        button(type="submit").btn.btn-primary Save
+    include ../common/footer.pug
+    +footer()
+    script(src='/javascripts/leads.js')
