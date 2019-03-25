@@ -7,10 +7,10 @@ html(lang='en')
       include common/navbar.pug
       +navbar(user)
       div.container
-        h1.mb-3 Landing Page
+        h1.mb-3.mt-3 Landing Page
         p.lead This a NodeJS web application using express and postgreSQL.
         p.lead.mb-4 You can add a bill or an income, the results will reflect in the graph.
-        div.row.align-items-center
+        div.row
           div.col-md-6.order-md-1.text-center.text-md-left.pr-md-5
             div.jumbotron
               h2.text-center Add a bill or an income !
@@ -19,11 +19,11 @@ html(lang='en')
                   form(action="/", method="POST")
                     div.formgroup
                       label.small.mb-1.mt-3 Name:
-                      input(placeholder='Name', required=true, name='name', value='' ).form-control
+                      input(placeholder='Name', required=true, name='name', value='').form-control
                       label.small.mb-1.mt-3 Date:
-                      input(required=true, name='date', type='date', value='' ).form-control
+                      input(placeholder='mm/dd/yyy', required=true, name='date', type='date', value='').form-control
                       label.small.mb-1.mt-3 Amount:
-                      input(placeholder='$0.00', required=true, name='amount', type='number', value='' ).form-control
+                      input(placeholder='$0.00', required=true, name='amount', type='number', value='').form-control
                       div.mt-3.text-center
                         div.btn-group.mr-2
                           button.btn.btn-danger(type="submit", name="bill", value="bill") Bill

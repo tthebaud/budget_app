@@ -2,7 +2,13 @@
 const models = require('../models');
 
 exports.landing_get = function(req, res, next) {
-	return Promise.all([models.Income.findAll(), models.Bill.findAll()]).then( data => {
+	return Promise.all([
+		models.Income.findAll({
+			order: [[ "date", "DESC" ]],
+		}),
+		models.Bill.findAll({
+			order: [[ "date", "DESC" ]],
+		})]).then( data => {
 		res.render('landing', { title: 'Express', incomes: data[0], bills: data[1] });
 	})
 }
