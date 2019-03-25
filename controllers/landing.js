@@ -2,7 +2,9 @@
 const models = require('../models');
 
 exports.landing_get = function(req, res, next) {
-  res.render('landing', { title: 'Express', user: req.user });
+	return Promise.all([models.Income.findAll(), models.Bill.findAll()]).then( data => {
+		res.render('landing', { title: 'Express', incomes: data[0], bills: data[1] });
+	})
 }
 
 exports.submit_form = function(req, res, next) {
@@ -26,14 +28,10 @@ exports.submit_form = function(req, res, next) {
 	}
 }
 
-exports.submit_income = function(req, res, next) {
-
-}
-
 
 exports.show_leads = function(req, res, next) {
-	return models.Lead.findAll().then( leads => {
-		  res.render('lead/leads', { title: 'Express', leads: leads });
+	return models.Bill.findAll().then( bills => {
+		res.render('lead/leads', { title: 'Express', bills: bills });
 	})
 }
 
