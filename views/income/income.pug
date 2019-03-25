@@ -9,7 +9,7 @@ html(lang='en')
       div.container.mt-5
         h1 Edit Income
         div.row.align-items-center.mt-5
-            form(action="/income-" + income.id, method="POST")
+            form(action="/income-" + income.id + "/edit_income", method="POST")
               table.table.table-sm
                 thead
                   tr

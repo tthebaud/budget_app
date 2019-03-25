@@ -17,17 +17,16 @@ router.post('/signup', user.signup);
 router.post('/logout', user.logout);
 router.get('/logout', user.logout);
 
-//Actions perform on Bill and Income
-router.get('/bill-:bill_id', landing.show_bill);
-router.post('/bill-:bill_id', landing.edit_bill);
-router.get('/income-:income_id', landing.show_income);
-router.post('/income-:income_id', landing.edit_income);
+//Actions perform on bills
+router.get('/bill-:bill_id/edit_bill', landing.show_edit_bill);
+router.post('/bill-:bill_id/edit_bill', landing.edit_bill);
+router.post('/bill-:bill_id/delete_bill', landing.delete_bill);
+
+//Actions perform on incomes
+router.get('/income-:income_id/edit_income', landing.show_edit_income);
+router.post('/income-:income_id/edit_income', landing.edit_income);
+router.post('/income-:income_id/delete_income', landing.delete_income);
 
 
-
-router.get('/lead/:lead_id/edit', landing.show_edit_lead);
-
-router.post('/lead/:lead_id/delete', landing.delete_lead);
-router.post('/lead/:lead_id/delete-json', landing.delete_lead_json);
 
 module.exports = router; //exports the module

@@ -1,16 +1,16 @@
+'use strict';
 
-
-function deleteLead( leadId ) {
+function deleteBill( billId ) {
 	$.ajax({
-		url: '/lead/' + leadId + '/delete-json',
+		url: '/bill-' + billId + '/delete_bill',
 		contentType: 'application/json; charset=utf-8',
 		dataType: 'json',
-		data: JSON.stringify( { leadId } ),
+		data: JSON.stringify( { billId } ),
 		type: 'POST',
 		success: ( ( res ) => {
 			//Replace follow button with unfollow
 			console.log( "Result: ", res )
-			$( "#" + leadId ).remove();
+			$( "#" + billId ).remove();
 		}),
 		error: ( ( error ) => {
 			console.log( "Error: ", error );

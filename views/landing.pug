@@ -29,7 +29,7 @@ html(lang='en')
                           button.btn.btn-danger(type="submit", name="bill", value="bill") Bill
                         div.btn-group.mr-2
                           button.btn.btn-success(type="submit", name="income", value="income") Income
-          div.col-md-6.order-md-1.text-center.text-md-left.pr-md-5
+          div.col-md-6.order-md-1.text-center.text-md-left.pr-md-1
             table.table.table-sm
               thead
                 tr
@@ -37,30 +37,36 @@ html(lang='en')
                   th(scope="col") Name
                   th(scope="col") Amount
                   th(scope="col")
+                  th(scope="col")
                 tr
               tbody
               if bills
                 for bill in bills
                   tr(id=bill.id).bg-danger
-                    td
+                    td.align-middle
                       span #{bill.date}
-                    td
+                    td.align-middle
                       span #{bill.name}
-                    td
+                    td.align-middle
                       span - $#{bill.amount}
-                    td
-                      a(href="/bill-" + bill.id) Edit
+                    td.align-middle
+                      a(href="/bill-" + bill.id + "/edit_bill", style="color:white;") Edit
+                    td.align-middle
+                      button(onclick=`deleteBill('${bill.id}')`).btn.btn-danger Delete
               if incomes
                 for income in incomes
                   tr(id=income.id).bg-success
-                    td
+                    td.align-middle
                       span #{income.date}
-                    td
+                    td.align-middle
                       span #{income.name}
-                    td
+                    td.align-middle
                       span + $#{income.amount}
-                    td
-                      a(href="/income-" + income.id) Edit
+                    td.align-middle
+                      a(href="/income-" + income.id + "/edit_income", style="color:white;") Edit
+                    td.align-middle
+                      button(onclick=`deleteIncome('${income.id}')`).btn.btn-success Delete
     include common/footer.pug
     +footer()
-    script(src='/javascripts/leads.js')
+    script(src='/javascripts/bills.js')
+    script(src='/javascripts/incomes.js')

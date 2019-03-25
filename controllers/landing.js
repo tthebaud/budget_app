@@ -34,7 +34,7 @@ exports.submit_form = function(req, res, next) {
 	}
 }
 
-exports.show_bill = function(req, res, next) {
+exports.show_edit_bill = function(req, res, next) {
 	return models.Bill.findOne({
 		where : {
 			id : req.params.bill_id
@@ -58,7 +58,17 @@ exports.edit_bill = function(req, res, next) {
 	});
 }
 
-exports.show_income = function(req, res, next) {
+exports.delete_bill = function(req, res, next) {
+	return models.Bill.destroy({
+		where: {
+			id: req.params.bill_id
+		}
+	}).then( result => {
+		res.send({ msg: "Success"});
+	});
+}
+
+exports.show_edit_income = function(req, res, next) {
 	return models.Income.findOne({
 		where : {
 			id : req.params.income_id
@@ -82,33 +92,10 @@ exports.edit_income = function(req, res, next) {
 	});
 }
 
-
-exports.show_edit_lead = function(req, res, next) {
-	return models.Lead.findOne({
-		where : {
-			id : req.params.lead_id
-		}
-	}).then( lead => {
-		res.render('lead/edit_lead', { lead : lead });
-	});
-}
-
-
-
-exports.delete_lead = function(req, res, next) {
-	return models.Lead.destroy({
+exports.delete_income = function(req, res, next) {
+	return models.Income.destroy({
 		where: {
-			id: req.params.lead_id
-		}
-	}).then( result => {
-		res.redirect('/leads');
-	});
-}
-
-exports.delete_lead_json = function(req, res, next) {
-	return models.Lead.destroy({
-		where: {
-			id: req.params.lead_id
+			id: req.params.income_id
 		}
 	}).then( result => {
 		res.send({ msg: "Success"});
