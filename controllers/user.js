@@ -5,18 +5,18 @@ let flash = require( "connect-flash" );
 const passport = require( "passport" );
 const myPassport = require( "../passport_setup" )( passport );
 const { isEmpty } = require( "lodash" );
-const { validateUser } = require( "../validators/signup");
+const { validateUser } = require( "../validators/signup" );
 
 exports.show_login = function( req, res, next ) {
-	res.render('user/login', { formData: {}, errors: {} });
+	res.render( "user/login", { formData: {}, errors: {} });
 }
 
 exports.show_signup = function( req, res, next ) {
-	res.render('user/signup', { formData: {}, errors: {} });
+	res.render( "user/signup", { formData: {}, errors: {} });
 }
 
 const rerender_signup = function( errors, req, res, next ) {
-  res.render('user/signup', { formData: req.body, errors: errors });
+  res.render( "user/signup", { formData: req.body, errors: errors });
 }
 
 const generateHash = function( password ) {
@@ -35,7 +35,7 @@ exports.signup = function( req, res, next ) {
         }
       }).then( user => {
         let newUser;
-        if ( user !== null) {
+        if ( user !== null ) {
           newUser = models.User.build({
             email: req.body.email,
             password: generateHash( req.body.password )
@@ -48,7 +48,7 @@ exports.signup = function( req, res, next ) {
           });
         }
         return newUser.save().then( result => {
-          passport.authenticate( 'local', {
+          passport.authenticate( "local", {
             successRedirect: "/",
             failureRedirect: "/signup",
             failureFlash: true
@@ -60,7 +60,7 @@ exports.signup = function( req, res, next ) {
 }
 
 exports.login = function( req, res, next ) {
-  passport.authenticate( 'local', {
+  passport.authenticate( "local", {
       successRedirect: "/",
       failureRedirect: "/login",
       failureFlash: true
@@ -70,5 +70,5 @@ exports.login = function( req, res, next ) {
 exports.logout = function( req, res, next ) {
   req.logout();
   req.session.destroy();
-  res.redirect('/');
+  res.redirect( "/" );
 }

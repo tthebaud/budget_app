@@ -1,7 +1,7 @@
 doctype html
-html(lang='en')
+html(lang="en")
   include ../common/head.pug
-  +head("Sign up to Starter MVP")
+  +head("Sign up to Budget App")
   body
     header
       include ../common/navbar.pug
@@ -13,16 +13,16 @@ html(lang='en')
               h2.text-center Login
               div.row
                 div.col-sm-12.col-md-12
-                  form(action='/login', method='POST')
+                  form(action="/login", method="POST")
                     div.formgroup
                       label.small.mb-1.mt-3 Email:
-                      input(placeholder='Enter your email', required=true, name='email', type='email', value='' ).form-control
+                      input(placeholder="Enter your email", required=true, name="email", type="email", value="" ).form-control
                       label.small.mb-1.mt-3 Password:
-                      input(placeholder='Enter your Current Password', required=true, name='password', type='password', value='' ).form-control
+                      input(placeholder="Enter your Current Password", required=true, name="password", type="password", value="" ).form-control
                       button.mt-3.btn.btn-primary(type="submit") Log in
                       p.mt-2.mb-0
                         | Forgot your password? #[a(href="#") Reset here].
                       p.m-0
-                        | Don't have an account yet? #[a(href="/signup") Sign up here]. 
+                        | Don"t have an account yet? #[a(href="/signup") Sign up here]. 
     include ../common/footer.pug
     +footer()

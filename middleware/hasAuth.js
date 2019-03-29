@@ -1,4 +1,4 @@
-let createError = require("http-errors");
+let createError = require( "http-errors" );
 
 exports.isLoggedIn = function( req, res, next ) {
     if ( req.user ) {

@@ -6,8 +6,6 @@ mixin navbar(user)
         ul.navbar-nav.mr-auto
           li.nav-item
             a.nav-link(href="/") Home
-          li.nav-item
-            a.nav-link(href="/leads") Leads
     div.navbar-right
       if user
         span.navbar-text #{user.email}
