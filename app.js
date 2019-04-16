@@ -22,13 +22,14 @@ app.use( express.static( path.join( __dirname, "public" )));
 app.use( flash() );
 app.use( logger("dev" ));
 app.use( express.json());
+app.use( express.urlencoded({ extended: false }));
 app.use( cookieParser());
+
 app.use( "/", indexRouter );
 app.use( passport.session());
 app.use( passport.initialize());
 app.use( "/users", usersRouter );
 app.use( session({ secret: "Our new secret" }));
-app.use( express.urlencoded({ extended: false }));
 
 // catch 404 and forward to error handler
 app.use( function( req, res, next ) {

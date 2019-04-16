@@ -90,13 +90,23 @@ html(lang="en")
         let data = new google.visualization.DataTable({ 
                     cols: [
                       {id: "expenses", label: "expenses", type: "string"},
-                      {id: "amount", label: "$", type: "number"}
+                      {id: "amount", label: "$", type: "number"},
+                      {id: "", role: "style", type: "string"},
+                      {id: "", role: 'annotation', type: "number" }
                     ],
                     rows: [
-                      {c:[{v: "Bills"},{v: "#{sumBills}" }]},
-                      {c:[{v: "Incomes"}, {v: "#{sumIncomes}" }]}
+                      {c:[{v: "Bills"}, {v: "#{sumBills}" }, {v: "#dc3545"}, {v: "#{sumBills}"}]},
+                      {c:[{v: "Incomes"}, {v: "#{sumIncomes}" }, {v: "#28a745"}, {v: "#{sumIncomes}"}]}
                     ]});
-        let options = { "title":"", "width":520, "height":520 };
+        let options = { 
+          "title":"Bills & Incomes",
+          "width":520, "height":520,
+          "legend": { position: "none" },
+          "vAxis": {
+            minValue: 0,
+          },
+
+        };
 
         var chart = new google.visualization.ColumnChart(document.getElementById("chart"));
         chart.draw(data, options);

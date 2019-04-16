@@ -34,7 +34,7 @@ exports.landing_get = function( req, res, next ) {
 }
 
 exports.add_bills_incomes = function( req, res, next ) {
-
+	console.log(req.body.name);
 	if ( req.body.bill == "bill" ) {
 		return models.Bill.create({
 		  	name: req.body.name,
@@ -85,6 +85,7 @@ exports.delete_bill = function( req, res, next ) {
 		}
 	}).then( result => {
 		res.send({ msg: "Success" });
+		res.redirect( "/" );
 	});
 }
 
